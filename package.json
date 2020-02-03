@@ -1,0 +1,27 @@
+{
+  "name": "tcp-in-node",
+  "version": "1.0.0",
+  "description": "Socket in Node.js",
+  "main": "index.js",
+  "dependencies": {
+    "asyncawait": "^3.0.0",
+    "net": "^1.0.2",
+    "nodemon": "^2.0.2",
+    "scripts": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustthepan/TCP-in-node.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dustthepan/TCP-in-node.js/issues"
+  },
+  "homepage": "https://github.com/dustthepan/TCP-in-node.js#readme"
+}
