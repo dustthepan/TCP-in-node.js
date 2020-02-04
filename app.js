@@ -1,6 +1,7 @@
 const net = require('net');
 //can communicate with other machines
 const readline = require('readline-sync');
+const Integer= require('node-gyp')
 
 
 
@@ -27,8 +28,8 @@ let initiateConnection = () => {
    
 
    app.on('data',(data) =>{
-      let integer = data.toString()
-      console.log('Data received %s',integer);
+      //let integer = parseInt(data)
+      console.log('Data received %s', data);
       setTimeout(() =>{
          inputNumber()
       },0)
@@ -36,7 +37,7 @@ let initiateConnection = () => {
 
    app.on('error', (err) => {
       app.destroy();
-      // app = null;
+      app = null;
       console.log('Connection Error %s',err)
 
       setTimeout(() =>{
@@ -59,7 +60,7 @@ let initiateConnection = () => {
 }
 
 const sendInteger=(data)=> {
-// let integer = parseInt(data)
+ //let integer = Buffer.from(data)
   if (!app){
 
      setTimeout(() =>{
@@ -67,9 +68,7 @@ const sendInteger=(data)=> {
    },0);
    return;
   } 
-
-  console.log('Sent Number')
- app.write(data);
+ app.write(Integer(data));
 }
 
    
@@ -85,7 +84,7 @@ const closeConnection =  () => {
 }
 
 
-const inputNumber = (number) => {
+const inputNumber = () => {
 
    const inputLine = readline.question("\n\n\Select Options(1-Open Connection, 2-Send Integer, 3-Close Connection, 4-Quit): ");
 
@@ -94,9 +93,9 @@ const inputNumber = (number) => {
          initiateConnection()
         break;
       case "2":
-         //let integer = parseInt(number)
-         sendInteger(number)
-         break;
+         const integerInput = readline.questionInt("Please Enter Number: ")
+         sendInteger(integerInput)
+         return;
       case "3":
          closeConnection();
          break;

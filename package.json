@@ -8,9 +8,11 @@
     "buffer": "^5.4.3",
     "cjs-loader": "^0.1.0",
     "net": "^1.0.2",
+    "node-gyp": "^6.1.0",
     "nodemon": "^2.0.2",
     "read-chunk": "^3.2.0",
     "readline-sync": "^1.4.10",
+    "rebuild": "^0.1.2",
     "run-script": "^0.1.1",
     "scripts": "^0.1.0"
   },
