@@ -23,23 +23,25 @@ let initiateConnection = () => {
    //new instane of socket
    app = new net.Socket();
 
-   //error handling
+   
+
+   app.on('data',(data) =>{
+      let integer = Buffer.alloc(data)
+      console.log('Data received %s',integer);
+      setTimeout(() =>{
+         inputNumber()
+      },0)
+   });
+
    app.on('error', (err) => {
       app.destroy();
       app = null;
-      console.log('Connection Errror %s',err.message)
+      console.log('Connection Error %s',err.message)
 
       setTimeout(() =>{
          inputNumber()
       },0)      
       
-   });
-
-   app.on('data',(data) =>{
-      console.log('Data received %s',data);
-      setTimeout(() =>{
-         inputNumber()
-      },0)
    });
 
    app.connect(port,host, () => {
@@ -50,14 +52,13 @@ let initiateConnection = () => {
       },0);
     });
 
-    setTimeout(()=>{
-       inputNumber()
-    },0)
+    setTimeout(() =>{
+      inputNumber()
+   },0);
 }
 
 const sendInteger=(data)=> {
-  let integer = Buffer(data)
-  integer[0] = 1
+ let integer = parseInt(data)
   if (!app){
 
      setTimeout(() =>{
@@ -90,8 +91,8 @@ const inputNumber = () => {
          initiateConnection()
         break;
       case "2":
-         let integer= readline.question("Input Number: ");
-       sendInteger(parseInt(integer))
+         let integer = readline.question("Input Number: ");
+       sendInteger(Buffer.from(integer))
          break;
       case "3":
          closeConnection();

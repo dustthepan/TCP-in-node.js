@@ -7,10 +7,11 @@ server.on('connections',(socket) => {
     console.log('connections created %s', clientAddress)
 
 
-    socket.on('data',(chunk) => {
-        let integer = parseInt(chunk);
+    socket.on('data',(data) => {
+        let integer = parseInt(data);
         console.log('Receiving input from %s: %s', clientAddress, integer);
         socket.write(integer)
+    
 
     socket.once('close', ()=> {
         console.log('Connection Closed %s ',clientAddress)
