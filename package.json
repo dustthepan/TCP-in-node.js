@@ -5,10 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "asyncawait": "^3.0.0",
+    "buffer": "^5.4.3",
     "cjs-loader": "^0.1.0",
     "net": "^1.0.2",
     "nodemon": "^2.0.2",
-    "process": "^0.11.10",
+    "read-chunk": "^3.2.0",
     "readline-sync": "^1.4.10",
     "run-script": "^0.1.1",
     "scripts": "^0.1.0"
@@ -17,7 +18,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server.js",
-    "build": "node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

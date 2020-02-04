@@ -1,19 +1,19 @@
 const net = require('net');
 //can communicate with other machines
 const readline = require('readline-sync');
-const process = require('process');
+
 
 
 //specific harded IP addreses and prts
 const host = '127.0.0.1'
-const port ='9000'||3000||3858
+const port = 9000
 
-const app = null;
+let app = null;
 
 //start connections
-const initiateConnection = () => {
+let initiateConnection = () => {
    if (app){
-      console.log('connection already establish');
+      console.log('--connection already establish--');
       setTimeout(() =>{
       inputNumber()
    },0)
@@ -27,7 +27,7 @@ const initiateConnection = () => {
    app.on('error', (err) => {
       app.destroy();
       app = null;
-      console.log('Connection Errror',err.message)
+      console.log('Connection Errror %s',err.message)
 
       setTimeout(() =>{
          inputNumber()
@@ -36,11 +36,11 @@ const initiateConnection = () => {
    });
 
    app.on('data',(data) =>{
-      console.log('Data received',data);
+      console.log('Data received %s',data);
       setTimeout(() =>{
          inputNumber()
       },0)
-   })
+   });
 
    app.connect(port,host, () => {
       console.log('connection success')
@@ -48,11 +48,16 @@ const initiateConnection = () => {
       setTimeout(() =>{
          inputNumber()
       },0);
-    })
+    });
+
+    setTimeout(()=>{
+       inputNumber()
+    },0)
 }
 
 const sendInteger=(data)=> {
-  let integer = parseInt(data)
+  let integer = Buffer(data)
+  integer[0] = 1
   if (!app){
 
      setTimeout(() =>{
@@ -60,7 +65,7 @@ const sendInteger=(data)=> {
    },0);
    return;
   } 
- console.log(app.write(integer))
+ app.write(integer);
 }
 
    
@@ -78,7 +83,7 @@ const closeConnection =  () => {
 
 const inputNumber = () => {
 
-   const inputLine = readline.question(" (1-Open Connection, 2-Send Integer, 3-Close Connection, 4-Quit:) ");
+   const inputLine = readline.question("\n\n\Select Options(1-Open Connection, 2-Send Integer, 3-Close Connection, 4-Quit): ");
 
   switch(inputLine) {
       case "1":
@@ -86,7 +91,7 @@ const inputNumber = () => {
         break;
       case "2":
          let integer= readline.question("Input Number: ");
-       sendInteger(parseInt(console.log(integer)))
+       sendInteger(parseInt(integer))
          break;
       case "3":
          closeConnection();
