@@ -6,7 +6,7 @@ const process = require('process');
 
 //specific harded IP addreses and prts
 const host = '127.0.0.1'
-const port ='9000'
+const port ='9000'||3000||3858
 
 const app = null;
 
@@ -17,10 +17,10 @@ const initiateConnection = () => {
       setTimeout(() =>{
       inputNumber()
    },0)
+   return;
    }
-
    
-   
+   //new instane of socket
    app = new net.Socket();
 
    //error handling
@@ -33,7 +33,7 @@ const initiateConnection = () => {
          inputNumber()
       },0)      
       
-   })
+   });
 
    app.on('data',(data) =>{
       console.log('Data received',data);
@@ -48,7 +48,6 @@ const initiateConnection = () => {
       setTimeout(() =>{
          inputNumber()
       },0);
-      return;
     })
 }
 
