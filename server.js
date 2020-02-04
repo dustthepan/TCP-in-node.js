@@ -8,9 +8,9 @@ server.on('connections',(socket) => {
 
 
     socket.on('data',(data) => {
-        let integer = parseInt(data);
-        console.log('Receiving input from %s: %s', clientAddress, integer);
-        socket.write(integer)
+        //let integer = parseInt(data);
+        console.log('Receiving input from %s: %s', clientAddress, data);
+        socket.write(data)
     
 
     socket.once('close', ()=> {

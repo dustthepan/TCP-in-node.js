@@ -14,6 +14,7 @@ let app = null;
 let initiateConnection = () => {
    if (app){
       console.log('--connection already establish--');
+      
       setTimeout(() =>{
       inputNumber()
    },0)
@@ -26,7 +27,7 @@ let initiateConnection = () => {
    
 
    app.on('data',(data) =>{
-      let integer = Buffer.alloc(data)
+      let integer = data.toString()
       console.log('Data received %s',integer);
       setTimeout(() =>{
          inputNumber()
@@ -35,8 +36,8 @@ let initiateConnection = () => {
 
    app.on('error', (err) => {
       app.destroy();
-      app = null;
-      console.log('Connection Error %s',err.message)
+      // app = null;
+      console.log('Connection Error %s',err)
 
       setTimeout(() =>{
          inputNumber()
@@ -58,7 +59,7 @@ let initiateConnection = () => {
 }
 
 const sendInteger=(data)=> {
- let integer = parseInt(data)
+// let integer = parseInt(data)
   if (!app){
 
      setTimeout(() =>{
@@ -66,7 +67,9 @@ const sendInteger=(data)=> {
    },0);
    return;
   } 
- app.write(integer);
+
+  console.log('Sent Number')
+ app.write(data);
 }
 
    
@@ -82,7 +85,7 @@ const closeConnection =  () => {
 }
 
 
-const inputNumber = () => {
+const inputNumber = (number) => {
 
    const inputLine = readline.question("\n\n\Select Options(1-Open Connection, 2-Send Integer, 3-Close Connection, 4-Quit): ");
 
@@ -91,8 +94,8 @@ const inputNumber = () => {
          initiateConnection()
         break;
       case "2":
-         let integer = readline.question("Input Number: ");
-       sendInteger(Buffer.from(integer))
+         //let integer = parseInt(number)
+         sendInteger(number)
          break;
       case "3":
          closeConnection();
@@ -104,6 +107,7 @@ const inputNumber = () => {
          break
   }
 }
+
 
 inputNumber()
 
