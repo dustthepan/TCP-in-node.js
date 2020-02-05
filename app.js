@@ -1,12 +1,12 @@
 const net = require('net');
 //can communicate with other machines
-const readline = require('readline-sync');
-const Integer= require('node-gyp')
+const readlineSync = require('readline-sync');
+
 
 
 
 //specific harded IP addreses and prts
-const host = '127.0.0.1'
+const host = '192.168.01'
 const port = 9000
 
 let app = null;
@@ -68,7 +68,10 @@ const sendInteger=(data)=> {
    },0);
    return;
   } 
- app.write(Integer(data));
+
+
+ app.write(data);
+  
 }
 
    
@@ -86,14 +89,15 @@ const closeConnection =  () => {
 
 const inputNumber = () => {
 
-   const inputLine = readline.question("\n\n\Select Options(1-Open Connection, 2-Send Integer, 3-Close Connection, 4-Quit): ");
+
+   const inputLine = readlineSync.question("\n\n\Select Options(1-Open Connection, 2-Send Integer, 3-Close Connection, 4-Quit): ");
 
   switch(inputLine) {
       case "1":
          initiateConnection()
         break;
       case "2":
-         const integerInput = readline.questionInt("Please Enter Number: ")
+         const integerInput = readlineSync.questionInt("Please Enter Number: ")
          sendInteger(integerInput)
          return;
       case "3":
