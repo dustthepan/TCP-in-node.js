@@ -8,3 +8,5 @@ The program is designed to be ran by three different machines, where an input of
 
 
 This program was build on Windows 10.
+
+Testing was performed on PowerShell.
