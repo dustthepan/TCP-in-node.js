@@ -9,8 +9,7 @@ The program is designed to be ran by three different machines, where an input of
 
 This program was build on Windows 10.
 
-<<<<<<< HEAD
-Testing: Windows PowerShell
-=======
 Testing for multiple connections was performed on PowerShell.
->>>>>>> 099c7312fbbfac60a68a045b37ad439c9a9ee708
+
+
+![Alt text](/assets/tcp.png "Communication")
