@@ -5,7 +5,8 @@ const readlineSync = require('readline-sync');
 
 
 
-//specific harded IP addreses and prts
+//specific harded IP addreses and ports
+// 3 machines
 const host1 = '192.168.1.14'
 const host2 = '192.168.1.15'
 const host3 = '192.168.1.22'
@@ -116,7 +117,7 @@ const inputNumber = () => {
         break;
       case "2":
          const integerInput = readlineSync.questionInt("Please Enter Number: ")
-         console.log(sendInteger(integerInput))
+         sendInteger(integerInput)
          return;
       case "3":
          closeConnection();
