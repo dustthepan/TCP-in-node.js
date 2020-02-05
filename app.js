@@ -6,7 +6,10 @@ const readlineSync = require('readline-sync');
 
 
 //specific harded IP addreses and prts
-const host = '192.168.01'
+const host1 = '192.168.1.14'
+const host2 = '192.168.1.15'
+const host3 = '192.168.1.22'
+
 const port = 9000
 
 let app = null;
@@ -46,13 +49,30 @@ let initiateConnection = () => {
       
    });
 
-   app.connect(port,host, () => {
+   app.connect(port,host1, () => {
       console.log('connection success')
 
       setTimeout(() =>{
          inputNumber()
       },0);
     });
+
+    app.connect(port,host2, () => {
+      console.log('connection success')
+
+      setTimeout(() =>{
+         inputNumber()
+      },0);
+    });
+    
+    app.connect(port,host3, () => {
+      console.log('connection success')
+
+      setTimeout(() =>{
+         inputNumber()
+      },0);
+    });
+
 
     setTimeout(() =>{
       inputNumber()
@@ -68,8 +88,6 @@ const sendInteger=(data)=> {
    },0);
    return;
   } 
-
-
  app.write(data);
   
 }
@@ -98,7 +116,7 @@ const inputNumber = () => {
         break;
       case "2":
          const integerInput = readlineSync.questionInt("Please Enter Number: ")
-         sendInteger(integerInput)
+         console.log(sendInteger(integerInput))
          return;
       case "3":
          closeConnection();

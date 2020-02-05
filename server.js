@@ -1,16 +1,18 @@
 const net = require('net');
 const server = net.createServer();
 
+const serverHOST='127.0.0.1'
+const serverPORT=9000
 
 server.on('connections',(socket) => {
     let clientAddress = `${socket.remoteAddress}:${socket.remotePort}`;
-    console.log('connections created %s', clientAddress)
+    //console.log('connections created %s', clientAddress)
 
 
     socket.on('data',(data) => {
         //let integer = parseInt(data);
-        console.log('Receiving input from %s: %s', clientAddress, data);
-        socket.write(data)
+        console.log(data);
+        //socket.write(data)
     
 
     socket.once('close', ()=> {
@@ -20,9 +22,12 @@ server.on('connections',(socket) => {
     socket.on('error',(err)=> {
         console.log('Connect %s Error %s', clientAddress,err.message)
     })
-})
-
-server.listen(9000, ()=>{
-    console.log('Listening on %j', server.address())
     })
 })
+
+server.listen(serverPORT,serverHOST);
+
+// server.listen(9000, ()=>{
+//     console.log('Integer', server.address())
+//     })
+// })
