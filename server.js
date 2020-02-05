@@ -23,9 +23,7 @@ server.on('connections',(socket) => {
         console.log('Connect %s Error %s', clientAddress,err.message)
     })
     })
-})
-
-server.listen(serverPORT,serverHOST);
+}).listen(serverPORT,serverHOST,console.log(data));
 
 // server.listen(9000, ()=>{
 //     console.log('Integer', server.address())
