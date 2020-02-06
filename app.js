@@ -7,9 +7,9 @@ const readlineSync = require('readline-sync');
 
 //specific harded IP addreses and ports
 // 3 machines
-const host1 = '192.168.1.14'
-const host2 = '192.168.1.15'
-const host3 = '192.168.1.22'
+const host = '192.168.1.14'
+// const host2 = '192.168.1.15'
+// const host3 = '192.168.1.22'
 
 const port = 9000
 
@@ -50,7 +50,7 @@ let initiateConnection = () => {
       
    });
 
-   app.connect(port,host1, () => {
+   app.connect(port,host, () => {
       console.log('connection success')
 
       setTimeout(() =>{
@@ -58,21 +58,21 @@ let initiateConnection = () => {
       },0);
     });
 
-    app.connect(port,host2, () => {
-      console.log('connection success')
+   //  app.connect(port,host2, () => {
+   //    console.log('connection success')
 
-      setTimeout(() =>{
-         inputNumber()
-      },0);
-    });
+   //    setTimeout(() =>{
+   //       inputNumber()
+   //    },0);
+   //  });
     
-    app.connect(port,host3, () => {
-      console.log('connection success')
+   //  app.connect(port,host3, () => {
+   //    console.log('connection success')
 
-      setTimeout(() =>{
-         inputNumber()
-      },0);
-    });
+   //    setTimeout(() =>{
+   //       inputNumber()
+   //    },0);
+   //  });
 
 
     setTimeout(() =>{
@@ -80,7 +80,7 @@ let initiateConnection = () => {
    },0);
 }
 
-const sendInteger=(data)=> {
+const sendInteger= (data)=> {
  //let integer = Buffer.from(data)
   if (!app){
 
